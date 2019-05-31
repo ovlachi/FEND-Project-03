@@ -1,3 +1,48 @@
 body {
     text-align: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+.modal__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.43)
+}
+
+.modal__body {
+    position: relative;
+    width: 250px;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    transform: translate(-50%, -70%);
+    border-radius: 8px;
+    z-index: 20;
+    padding-bottom: 1.5rem;
+
+}
+
+.modal__heading {
+    align-content: center;
+    padding: 1.5rem 1rem 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 200;
+}
+
+.modal__button {
+    background: #ffa500;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
 }

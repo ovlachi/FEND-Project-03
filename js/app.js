@@ -1,14 +1,17 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x = 0
-    this.y = 0
+    this.x = x
+    this.y = y + 63
+    this.speed = speed
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
   
     this.sprite = 'images/enemy-bug.png';
     this.horizontal = 101
+    this.offscreenX = 505
+    this.negativeX = -101
 };
 
 // Update the enemy's position, required method for game
@@ -19,13 +22,15 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
         //If Enemy is not passed boundary (MY TASK)
-        if (this.x < 404) {
         // Move forward
+        if (this.x < this.offscreenX) {
         // Increment x by speed multiplied by (*) dt (delta time)
-        this.x += 200 * dt
+        this.x += this.speed * dt
+        } else {
+        // Reset Enemy position to start
+        this.x = this.negativeX
         }
-            // else
-            // Reset Enemy position to start
+            
 };
 
 // Draw the enemy on the screen, required method for game
@@ -48,10 +53,11 @@ Enemy.prototype.render = function() {
                 this.horizontal = 101
                 this.vertical = 83
                 this.startX = 202
-                this.startY = 405
+                this.startY = 395
                 this.x = this.startX
                 this.y = this.startY
                 this.sprite = "images/char-boy.png"
+                this.win = false
             }
         
 
@@ -76,32 +82,35 @@ Enemy.prototype.render = function() {
                 if (keyPress === "up" && this.y > 0) {
                         this.y -= this.vertical
                     } 
-                if (keyPress === "down" && this.y < 405) {
+                if (keyPress === "down" && this.y < 395) {
                         this.y += this.vertical
                 }
         }
+  
+            // Update Player position (MY TASK)
+            update () {
+                // Check for collision
+                for(let enemy of allEnemies) {
+                    // Did Player x and y collide with Enemy?
+                    if (this.y === enemy.y && (enemy.x + 80 > this.x && enemy.x < this.x + 80)) {
+                        this.resetToStart()
+                    }
+                    //console.log(this.y, enemy.y)
+                }
+                // Check for win
+                    //  Did Player x and y reached the water 
+                    if (this.y === -20) {
+                        this.win = true
+                    }
+            } 
+
+        //Reset Player (MY TASK)
+        resetToStart() {
+            // Set x and y coordinates back to the starting point x and y.
+            this.x = this.startX
+            this.y = this.startY
+        }
     }
-
-
-
-                    //Methods(MY TASK)
-                        // Update Player position (MY TASK)
-                            // Check for collision
-                                // Did Player x and y collide with Enemy?
-                            // Check for win
-                                //  Did Player x and y reached the water tiles?
-
-                        // Render Player position (DONE)
-                            // Draw Player image sprite on the current x and y coordinates.
-                            
-                        // Handle keyboard input (DONE)
-                            // Update Player's x and y position according to keyboard input.
-                                //@param {string} input - Moving direction
-                        // Reset Player (MY TASK)
-                            // Set x and y coordinates back to the starting point x and y.
-
-
-
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -109,9 +118,13 @@ Enemy.prototype.render = function() {
 
         // New Player object (MY TASK)
         const player = new Player()
-        const bug01 = new Enemy()
+        const enemy01 = new Enemy(this.negativeX, 0, 200 )
+        const enemy02 = new Enemy(this.negativeX, 83, 300)
+        const enemy03 = new Enemy((-101*2.5), 83, 300)
+        const enemy04 = new Enemy((-101*2.5), 166, 400)
+
         const allEnemies = []
-        allEnemies.push(bug01)
+        allEnemies.push(enemy01, enemy02, enemy03, enemy04)
 
 
             // Initialise allEnemies array (MY TASK)

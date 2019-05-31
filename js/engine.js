@@ -14,6 +14,7 @@
  */
 
 var Engine = (function(global) {
+    'use strict';
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas element's height/width and add it to the DOM.
@@ -22,11 +23,24 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        anim;//Added an "anim" variable to be able to stop the game when player get to the water.
+
+    /* variables  added to manipulate the modal window  (MY TASK) */
+    const modal = document.querySelector(".modal__background")
+    const replay = document.querySelector(".modal__button")
 
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
+
+    /* Reset game to start  (MY TASK) */
+    replay.addEventListener('click', function() {
+        modal.classList.toggle('hide')
+        player.resetToStart() 
+        player.win = false
+        win.requestAnimationFrame(main)
+    })
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -54,8 +68,16 @@ var Engine = (function(global) {
 
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
+         * Also use cancelAnimationFrame function to stop the redraw of the window
+         * when player win (get to the water).
          */
-        win.requestAnimationFrame(main);
+       
+        if (player.win === true) {
+            win.cancelAnimationFrame(anim)
+            modal.classList.toggle('hide')    
+        } else {
+            anim = win.requestAnimationFrame(main);
+        }
     }
 
     /* This function does some initial setup that should only occur once,
@@ -90,11 +112,10 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        //COMMENTED OUT
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-       // player.update();
+       player.update();
     }
 
     /* This function initially draws the "game level", it will then call

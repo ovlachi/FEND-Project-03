@@ -1,19 +1,49 @@
-# Classic Arcade Game Clone Project
+# Classic Arcade Game Project - RMIT/Udacity Front-End Developer Nanodegree
 
-## Table of Contents
+## Introduction
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
 
-## Instructions
+This is my third project of RMIT/Udacity's Front-End Nanodegree program. The Classic Arcade Game is a copy of the classic Frogger Arcade Game developed by Konami. 
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+#### This is the link of the live game created by me:
+[Classic Arcade Game](https://ovlachi.github.io/FEND-Project-03/)
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
+The main goal of the game is to get our Player up to the water avoiding collision with the enemy bugs, which are traversing from left to right randomly. we need to use the left, right, up and down arrows to naigate our player.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+
+## Technical
+In order to achiev this we have to write Object-Oriented Javascript- class functions with constructors (like `Player` and `Enemy`). We use the keyword `this`  within our class and class prototype functions to refer to the object the function is called upon.
+
+
+## How to play
+
+
+#### Open this link:
+[Classic Arcade Game](https://ovlachi.github.io/FEND-Project-03/)
+
+#### Navigate your Player:
+With your keyboard left, right, up and down arrows navigate your Player up to the water section on your board avoiding collision with the enemy bugs which are traveling from left to right with a random speed. If Player collide with Enemy, Player jumps back to it's original starting point.
+
+#### Winning the game:
+When Player arrives to the watter, a "Success!!!" pop-up appears on the screen. The game is paused until you click the "Play again" button on the modal window. 
+
+#### Play again:
+You can replay as many times as you want by clicking the "Play again" button on the modal window.
+
+
+## Documentation
+
+
+#### README:
+A README file is included detailing the game and all dependencies.
+
+#### Comments:
+Comments are present and effectively explain longer code procedure when necessary.
+
+#### Code Quality:
+Code is formatted with consistent, logical, and easy-to-read formatting as described in the [Udacity JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html).
+
 
 ## Contributing
 
